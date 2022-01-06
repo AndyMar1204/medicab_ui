@@ -1,0 +1,24 @@
+<div>
+    <form #addUserForm="ngForm" (ngSubmit)="saveOrUpdateUser(addUserForm)">
+        <legend>Ajout utilisateur</legend>
+        <div>
+            <label for="username">Username</label>
+            <input type="text" name="username" id="" required="" [(ngModel)]="user.username" minlength="4">
+        </div>
+        <div>
+            <label for="email">email</label>
+            <input type="email" name="email" id="" required="" [(ngModel)]="user.email">
+        </div>
+        <div>
+            <label for="Password">Password</label>
+            <input type="password" name="Password" id="" required="" [(ngModel)]="user.password" minlength="4">
+        </div>
+        <div>
+            <label for="Telephone">Telephone</label>
+            <input type="tel" name="Telephone" id="" required="" [(ngModel)]="user.number" maxlength="10" minlength="10">
+        </div>
+        <div>
+            <button type="submit">Enregistrer</button>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,46 @@
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-9 col-lg-12 col-xl-10">
+            <div class="card shadow-lg o-hidden border-0 my-5">
+                <div class="card-body p-0">
+                    <div class="row">
+                        <div class="col-lg-6 d-none d-lg-flex">
+                            <div class="flex-grow-1 bg-login-image" style="background-image: url(&quot;assets/img/bg.jpg&quot;);">
+
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="p-5">
+                                <div class="text-center">
+                                    <h4 class="text-dark mb-4">Bienvenue sur medicab</h4>
+                                </div>
+                                <app-message-modal *ngIf="displayMessageModal" [messageModal]="messageModal"></app-message-modal>
+                                <form #signinForm="ngForm" class="user" (ngSubmit)="signUser(signinForm)">
+
+                                    <div class=" form-group ">
+                                        <input class="form-control form-control-user " type="tel" id="exampleInputEmail" aria-describedby="phoneHelp " placeholder="Telephone ... " name="number" [(ngModel)]="user.number" required maxlength="9" minlength="9">
+                                    </div>
+                                    <div class="form-group ">
+                                        <input class="form-control form-control-user " type="password" id="exampleInputPassword " placeholder="Mot de passe " name="password" [(ngModel)]="user.password" required minlength="4">
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="custom-control custom-checkbox small">
+                                            <div class="form-check">
+                                                <input class="form-check-input custom-control-input" name="saveConnexion" type="checkbox" [(ngModel)]="saveConnexion" id="formCheck-1">
+                                                <label class="form-check-label custom-control-label" for="formCheck-1">Se souvenir de moi</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <button class="btn btn-primary btn-block text-white btn-user " type="submit">Connexion</button>
+
+                                </form>
+                                <div class="text-center"><a class="small" href="reset">Mot de passe oublié</a></div>
+                                <div class="text-center"><a class="small" href="signup">Créer un compte</a></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

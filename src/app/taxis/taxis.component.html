@@ -1,0 +1,65 @@
+<h3>Liste des taxis</h3>
+<div class="card shadow">
+    <div class="card-header py-3">
+        <p class="text-primary m-0 font-weight-bold">Informations des taxis</p>
+    </div>
+
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-4 text-nowrap">
+                <div id="dataTable_length" class="dataTables_length" aria-controls="dataTable">
+                    <label>Voir&nbsp;
+            <select class="form-control form-control-sm custom-select custom-select-sm">
+              <option value="10" selected="">10</option>
+              <option value="25">25</option>
+              <option value="50">50</option>
+              <option value="100">100</option>
+            </select>&nbsp;
+          </label>
+                </div>
+            </div>
+            <div class="col-md-4 align-self-center">
+                <button class="btn" routerLink="/addTaxi">  <i class="fas fa-user-plus"></i> ajouter un taxi</button>
+            </div>
+            <div class="col-md-4">
+                <div class="text-md-right dataTables_filter" id="dataTable_filter">
+                    <label>
+                       <input type="search" class="form-control form-control-sm" aria-controls="dataTable" placeholder="Rechercher">
+                       </label>
+                </div>
+            </div>
+        </div>
+        <div class="table-responsive table mt-2" id="dataTable" role="grid" aria-describedby="dataTable_info">
+            <table class="table my-0" id="dataTable">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Plaque</th>
+                        <th>Position</th>
+                        <th>Adresse</th>
+                        <th>Number</th>
+                        <th>Action</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let taxi of allTaxis">
+
+                        <td>
+                            {{taxi.id}} . <img class="rounded-circle mr-2" width="30" height="30" src="assets/img/avatars/avatar1.jpeg"> {{taxi.username}}
+                        </td>
+                        <td>{{taxi.plaque}}</td>
+                        <td>{{taxi.position.longitude}} &
+                            <br>{{taxi.position.latitude}}</td>
+                        <td>{{taxi.adresse}}</td>
+                        <td>{{taxi.number}}</td>
+                        <td>
+                            <div class="btn-group">
+                                <button class="btn" (click)=updateUser(user.id)><i class="fas fa-edit"></i></button>
+                                <button class="btn" (click)=deleteUser(user.id)><i class="fas fa-trash"></i></button>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>

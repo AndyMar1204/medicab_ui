@@ -1,0 +1,46 @@
+<div class="container">
+    <div class="card shadow-lg o-hidden border-0 my-5">
+        <div class="card-body p-0">
+            <div class="row">
+                <div class="col-lg-5 d-none d-lg-flex">
+                    <div class="flex-grow-1 bg-register-image" style="background-image: url(&quot;assets/img/bg.jpg&quot;);"></div>
+                </div>
+                <div class="col-lg-7">
+                    <div class="p-5">
+                        <app-message-modal *ngIf="displayMessageModal" [messageModal]="messageModal"></app-message-modal>
+                        <form #addUserForm="ngForm" (ngSubmit)="addUser(addUserForm)" class="user">
+                            <div class="form-group">
+                                <label for="username ">Nom d'utilisateur <span>*</span></label>
+                                <input type="text" class="form-control form-control-user" name="username" id="exampleFirstName" minlength="4" required [(ngModel)]="user.username">
+                            </div>
+                            <div class="form-group">
+                                <label for="email ">Adresse mail <span>*</span></label>
+                                <input class="form-control form-control-user" type="email" name="email" id="exampleInputEmail" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" required [(ngModel)]="user.email">
+                            </div>
+                            <div class="form-group">
+                                <label for="number ">Numero de telepone <em>+243</em> <span>*</span></label>
+                                <input class="form-control form-control-user" type="tel" name="number " id="number " minlength="9" maxlength="9 " required [(ngModel)]="user.number">
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-sm-6 mb-3 mb-sm-0">
+                                    <label for="password ">Mot de passe <span>*</span></label>
+                                    <input class="form-control form-control-user" type="password" name="password " id="password" minlength="4" required [(ngModel)]="user.password">
+                                </div>
+                                <div class="col-sm-6">
+                                    <label for="password_repeat">Confirmez mot de passe <span>*</span></label>
+                                    <input class="form-control form-control-user" type="password" name="password_repeat" id="password_repeat" minlength="4" required [(ngModel)]="password_repeat">
+                                </div>
+                            </div>
+
+                            <div>
+                                <button class="btn btn-primary btn-block text-white btn-user" type="submit" [disabled]="!addUserForm.form.valid">Enregistrer</button>
+                            </div>
+                        </form>
+                        <div class="text-center"><a class="small" href="reset">Mot de passe oublié??</a></div>
+                        <div class="text-center"><a class="small" href="signin">Avez vous deja un compte? Connectez-vous</a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
