@@ -1,0 +1,53 @@
+<div class="row justifiy-content-center" style="font-size: 14px; display: inline;">
+    <div class="col-12" *ngFor="let hop of listHopital">
+        <div class="card shadow-lg o-hidden border-0 my-5 dropdown">
+            <div class="card-header conteneur">
+                <div class="flex">
+                    <p class="text-primary m-0 font-weight-bold">{{hop.username}}</p>
+                </div>
+                <div class="flex dropdown" style="text-align: right;">
+                    <button type="button" class="bs-dropdown-toggle btn btn-sm btn-primary" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          <i class="bi bi-plus"></i>
+                        </button>
+                    <div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item btn" (click)="viewHopital(hop.id)">Voir hopital</a>
+                        <a class="dropdown-item btn" *ngIf="isUserAccount()" (click)="setUserHopital(hop)">Definir comme hopital de reference</a>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body row">
+                <div class="conteneur col-12 text-center">
+                    <div class="flex col-3">
+                        <img *ngIf="hop.profil.name" src="{{getImage(hop)}}" alt="" class="rounded-circle mr-2" width="80" height="80">
+                        <img *ngIf="!hop.profil.name" src="assets/img/hopital.gif" alt="" class="rounded-circle mr-2" width="80" height="80">
+                    </div>
+                    <div class="flex col-9" style="text-align: left;">
+                        <div class="">
+
+                            <p *ngIf="hop.nom" class="text-dark text-center m-1"><strong>{{hop.nom}}</strong></p>
+                            <p *ngIf="!hop.nom" class="m-1">{{hop.username}}</p>
+                            <p class="m-1"><strong>Adresse : </strong>{{getAdresse(hop.adresse)}}</p>
+                            <p class="m-1"><strong>Phone : </strong>{{hop.number}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer py-3">
+                <div class="conteneur">
+                    <div class="flex">
+                        <p class="text-primary m-0 font-weight-bold pull-left">Heure d'ouverture : {{hop.heureOuverture}}</p>
+                        <p class="text-primary m-0 font-weight-bold pull-left">Heure de fermeture : {{hop.heureFermeture}}</p>
+                    </div>
+                    <div class="flex" style="text-align: right;">
+                        <p class="text-primary m-0 font-weight-bold  " *ngIf="hop.ouvert">Ouvert</p>
+                        <p class="text-primary m-0 font-weight-bold  text-danger" *ngIf="!hop.ouvert">Fermé</p>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+</div>

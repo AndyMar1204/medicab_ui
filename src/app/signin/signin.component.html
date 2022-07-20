@@ -1,0 +1,93 @@
+<div class="container" *ngIf="!typeAccount">
+    <div class="pagetitle">
+        <h1>Continuer en tant que</h1>
+    </div>
+    <div class="iconslist row  row-cols-">
+        <div class="icon col" (click)="setTypeAccount('user')">
+            <i class="bi bi-person-fill"></i>
+            <div class="label">Utilisateur</div>
+        </div>
+        <div class="icon col" (click)="setTypeAccount('driver')">
+            <i class="bx bxs-taxi"></i>
+            <div class="label">Chauffeur</div>
+        </div>
+        <div class="icon col" (click)="setTypeAccount('hopital')">
+            <i class="bx bxs-business"></i>
+            <div class="label">Hopital</div>
+        </div>
+    </div>
+</div>
+<div class="container" *ngIf="typeAccount">
+
+    <section class="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-4 col-md-6 d-flex flex-column align-items-center justify-content-center">
+
+                    <div class="d-flex justify-content-center py-4">
+                        <a routerLink="/" class="logo d-flex align-items-center w-auto">
+                            <img src="favicon.png" alt="">
+                        </a>
+                    </div>
+                    <!-- End Logo -->
+
+                    <div class="card mb-3">
+
+                        <div class="card-body">
+
+                            <div class="pt-4 pb-2">
+                                <h5 class="card-title text-center pb-0 fs-4">Connexion</h5>
+                                <p class="text-center small">Entrez vos details pour vous connecter</p>
+                            </div>
+
+                            <form class="row g-3 needs-validation" novalidate #accountForm="ngForm" (ngSubmit)="connexion(accountForm)">
+
+
+                                <div class="col-12">
+                                    <label for="yourEmail" class="form-label">Votre numero telephone</label>
+                                    <input type="tel" name="number" class="form-control" id="yourNumber" #num="ngModel" [(ngModel)]="number" required [minlength]="10" pattern="\(?\d+\)?[-.\s]?\d+[-.\s]?\d+">
+                                    <div class="text-danger valide" *ngIf="num.dirty && num.invalid">Entrer un numero valide à 10 chiffres!</div>
+                                </div>
+
+
+                                <div class="col-12">
+                                    <label for="yourPassword" class="form-label">Mot de passe</label>
+                                    <input type="password" #pass="ngModel" name="password" class="form-control" minlength="4" id="yourPassword" [(ngModel)]="password" required>
+                                    <div class="text-danger" *ngIf="pass.dirty && pass.invalid">Votre mot de passe doit contenir plus de 4 caracteres!</div>
+                                </div>
+
+                                <div class="col-12">
+                                    <div class="form-check">
+                                        <input class="form-check-input" name="terms" type="checkbox" value="" id="acceptTerms" [(ngModel)]="term">
+                                        <label class="form-check-label" for="acceptTerms">Rester connecté</label>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <button class="btn btn-primary w-100" type="submit" [disabled]="!accountForm.form.valid">Se connecter</button>
+                                </div>
+                                <div class="col-12 text-center">
+                                    <p class="small mb-0"><a routerLink="/reset">Mot de passe oublié??</a></p>
+                                </div>
+                                <div class="col-12 text-center">
+                                    <p class="small mb-0">Vous n'avez pas de compte? <a routerLink="/new">Créez votre compte</a></p>
+                                </div>
+                                <div class="col-12 text-center" (click)="changeType()">
+                                    <a href="#" class="small mb-0">Changer de type de compte</a>
+                                </div>
+                            </form>
+
+                        </div>
+                    </div>
+
+                    <div class="credits">
+
+                        Designed by <a href="https://github.com/AndyMar1204">Andy Josué</a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+</div>

@@ -1,0 +1,6 @@
+{
+	"appId": "com.andy.medicab",
+	"appName": "Medicab",
+	"webDir": "dist/medicab",
+	"bundledWebRuntime": false
+}

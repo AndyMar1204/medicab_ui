@@ -1,0 +1,150 @@
+<!-- ======= Header ======= -->
+<header id="header" class="header fixed-top d-flex align-items-center">
+
+    <div class="d-flex align-items-center justify-content-between">
+        <a routerLink="/" class="logo d-flex align-items-center">
+            <img src="favicon.png" alt="">
+            <span class="d-none d-lg-block">Medicab</span>
+        </a>
+        <i class="bi bi-list toggle-sidebar-btn" (click)="toggleMenu()"></i>
+    </div>
+    <!-- End Logo -->
+
+    <div class="search-bar">
+        <form class="search-form d-flex align-items-center" method="POST" action="#">
+            <input type="text" name="query" placeholder="Rechercher..." title="Rechercher">
+            <button type="submit" title="Search"><i class="bi bi-search"></i></button>
+        </form>
+    </div>
+    <!-- End Search Bar -->
+
+    <nav class="header-nav ms-auto">
+        <ul class="d-flex align-items-center">
+
+            <li class="nav-item d-block d-lg-none">
+                <a class="nav-link nav-icon search-bar-toggle " href="#">
+                    <i class="bi bi-search"></i>
+                </a>
+            </li>
+            <!-- End Search Icon-->
+            <li class="nav-item dropdown pe-3" *ngIf="account">
+
+                <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
+                    <img *ngIf="!account.profil.name" src="assets/img/_user.gif" alt="Profile" class="rounded-circle">
+                    <img *ngIf="account.profil.name" src="{{getProfil(account.profil)}}" alt="Profile" class="rounded-circle">
+                    <span class="d-none d-md-block dropdown-toggle ps-2">{{account.username}}</span>
+                </a>
+                <!-- End Profile Iamge Icon -->
+
+                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
+                    <li class="dropdown-header">
+                        <h6>{{account.username}}</h6>
+                        <span>{{typeAccount}}</span>
+                    </li>
+                    <li>
+                        <hr class="dropdown-divider">
+                    </li>
+
+                    <li>
+                        <a class="dropdown-item d-flex align-items-center" routerLink="/profil">
+                            <i class="bi bi-person"></i>
+                            <span>Mon profil</span>
+                        </a>
+                    </li>
+                    <li>
+                        <hr class="dropdown-divider">
+                    </li>
+
+
+                    <li>
+                        <a class="dropdown-item d-flex align-items-center" routerLink="/help">
+                            <i class="bi bi-question-circle"></i>
+                            <span>Besoin d'aides?</span>
+                        </a>
+                    </li>
+                    <li>
+                        <hr class="dropdown-divider">
+                    </li>
+
+                    <li (click)="logOut()">
+                        <a class="dropdown-item d-flex align-items-center">
+                            <i class="bi bi-box-arrow-right"></i>
+                            <span>Deconnexion</span>
+                        </a>
+                    </li>
+
+                </ul>
+                <!-- End Profile Dropdown Items -->
+            </li>
+            <!-- End Profile Nav -->
+
+        </ul>
+    </nav>
+    <!-- End Icons Navigation -->
+
+</header>
+<!-- End Header -->
+
+<!-- ======= Sidebar ======= -->
+<aside id="sidebar" class="sidebar">
+
+    <ul class="sidebar-nav" id="sidebar-nav">
+
+        <li class="nav-item" (click)="toggleMenu()">
+            <a class="nav-link" routerLink="/">
+                <i class="bi bi-grid"></i>
+                <span>Accueil</span>
+            </a>
+        </li>
+        <li class="nav-item" (click)="toggleMenu()">
+            <a class="nav-link collapsed" routerLink="/profil">
+                <i class="bi bi-person"></i>
+                <span>Mon profil</span>
+            </a>
+        </li>
+        <!-- End Profile Page Nav -->
+
+        <li class="nav-item" (click)="toggleMenu()">
+            <a class="nav-link collapsed" routerLink="/emergency">
+                <i class="bi bi-emoji-angry"></i>
+                <span>Urgences</span>
+            </a>
+        </li>
+        <!-- End F.A.Q Page Nav -->
+
+        <li class="nav-item" (click)="toggleMenu()">
+            <a class="nav-link collapsed" routerLink="/hospitals">
+                <i class="bi bi-list"></i>
+                <span>Liste des hopitaux</span>
+            </a>
+        </li>
+        <!-- End Contact Page Nav -->
+
+        <li *ngIf="typeAccount=='user' && user.hopital" class="nav-item" (click)="toggleMenu(); goToMyHopital()" style="cursor: pointer;">
+            <a class="nav-link collapsed">
+                <i class="bx bxs-clinic"></i>
+                <span>Mon hopital de reference</span>
+            </a>
+        </li>
+        <!-- End Register Page Nav -->
+
+
+        <!-- End Login Page Nav -->
+
+        <li class="nav-item" (click)="toggleMenu()" *ngIf="typeAccount ==='user'">
+            <a class="nav-link collapsed" routerLink="/myDoctor">
+                <i class="bi bi-person-circle"></i>
+                <span>Mon docteur</span>
+            </a>
+        </li>
+        <!-- End Error 404 Page Nav -->
+        <li class="nav-item position-absolute bottom-0 alert-warning" (click)="logOut()">
+            <a class="nav-link collapsed">
+                <i class="bi bi-box-arrow-in-left"></i>
+                <span>Deconnexion</span>
+            </a>
+        </li>
+
+    </ul>
+</aside>
+<!-- End Sidebar-->

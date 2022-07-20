@@ -1,0 +1,117 @@
+<section>
+    <div class="pagetitle" *ngIf="hopital">
+        <h1>{{hopital.username}}</h1>
+        <nav>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a routerLink="/">Accuei</a></li>
+                <li class="breadcrumb-item">hopital</li>
+                <li class="breadcrumb-item active">{{hopital.username}}</li>
+            </ol>
+        </nav>
+    </div>
+</section>
+<!-- End Page Title -->
+<section class="section profile" *ngIf="hopital">
+    <div class="row">
+        <div class="col-xl-3">
+
+            <div class="card">
+                <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
+
+                    <img *ngIf="!hopital.profil.name" src="assets/img/hopital.gif" alt="Profile" class="rounded-circle">
+                    <img *ngIf="hopital.profil.name" src="{{getProfil(hopital.profil)}}" alt="Profile" class="rounded-circle" height="120" width="120">
+                    <h2>{{hopital.username}}</h2>
+                    <h3>hopital</h3>
+                    <div class="social-links mt-2">
+                        <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
+                        <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
+                        <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
+                        <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="col-xl-9">
+
+            <div class="card">
+                <div class="card-body pt-3">
+                    <!-- Bordered Tabs -->
+                    <ul class="nav nav-tabs nav-tabs-bordered">
+
+                        <li class="nav-item">
+                            <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#profile-overview">Profil</button>
+                        </li>
+
+                        <li class="nav-item">
+                            <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-edit">Services</button>
+                        </li>
+
+                        <li class="nav-item">
+                            <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-settings">Departements</button>
+                        </li>
+
+                        <li class="nav-item">
+                            <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-change-password">Docteurs</button>
+                        </li>
+
+                    </ul>
+                    <div class="tab-content pt-2">
+
+                        <div class="tab-pane fade show active profile-overview" id="profile-overview">
+                            <h5 class="card-title">A propos de l'hopital</h5>
+                            <p class="small fst-italic">{{hopital.infos}}</p>
+
+                            <h5 class="card-title">Informations</h5>
+
+                            <div class="row">
+                                <div class="col-lg-3 col-md-4 label">Nom complet</div>
+                                <div class="col-lg-9 col-md-8">{{hopital.username}}</div>
+                            </div>
+
+
+                            <div class="row">
+                                <div class="col-lg-3 col-md-4 label">Addresse</div>
+                                <div class="col-lg-9 col-md-8">{{getAdresse(hopital.adresse)}}</div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-lg-3 col-md-4 label">Phone</div>
+                                <div class="col-lg-9 col-md-8">{{hopital.number}}</div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-lg-3 col-md-4 label">Email</div>
+                                <div class="col-lg-9 col-md-8">{{hopital.email}}</div>
+                            </div>
+
+                        </div>
+
+                        <div class="tab-pane fade profile-edit pt-3" id="profile-edit">
+
+
+                            <p>edit</p>
+
+                        </div>
+
+                        <div class="tab-pane fade pt-3" id="profile-settings">
+
+                            <p>Departements</p>
+
+                        </div>
+
+                        <div class="tab-pane fade pt-3" id="profile-change-password">
+                            <!-- Change Password Form -->
+                            <p>docteur</p>
+                        </div>
+
+                    </div>
+                    <!-- End Bordered Tabs -->
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>

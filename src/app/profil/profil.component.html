@@ -1,0 +1,364 @@
+<div class="pagetitle" *ngIf="account">
+    <h1>Profil</h1>
+    <nav>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a routerLink="/">Accuei</a></li>
+            <li class="breadcrumb-item">{{typeAccount}}</li>
+            <li class="breadcrumb-item active">{{account.username}}</li>
+        </ol>
+    </nav>
+</div>
+<!-- End Page Title -->
+<section class="section profile" *ngIf="account">
+    <div class="row">
+        <div class="col-xl-3">
+
+            <div class="card">
+                <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
+
+                    <img *ngIf="!account.profil.name" src="assets/img/_user.gif" alt="Profile" class="rounded-circle">
+                    <img *ngIf="account.profil.name" src="{{getProfil(account.profil)}}" alt="Profile" class="rounded-circle" height="120" width="120">
+                    <h2>{{account.username}}</h2>
+                    <h3>{{typeAccount}}</h3>
+                    <div class="social-links mt-2">
+                        <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
+                        <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
+                        <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
+                        <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="col-xl-9">
+
+            <div class="card">
+                <div class="card-body pt-3">
+                    <!-- Bordered Tabs -->
+                    <ul class="nav nav-tabs nav-tabs-bordered">
+
+                        <li class="nav-item">
+                            <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#profile-overview">Profil</button>
+                        </li>
+
+                        <li class="nav-item">
+                            <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-edit">Editer le profil</button>
+                        </li>
+
+                        <li class="nav-item">
+                            <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-settings">Parametres</button>
+                        </li>
+
+                        <li class="nav-item">
+                            <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-change-password">Changer le mot de passe</button>
+                        </li>
+
+                    </ul>
+                    <div class="tab-content pt-2">
+
+                        <div class="tab-pane fade show active profile-overview" id="profile-overview">
+                            <h5 class="card-title">Information medical</h5>
+                            <p class="small fst-italic">{{account.infos}}</p>
+
+                            <h5 class="card-title">Details du profil</h5>
+
+                            <div class="row">
+                                <div class="col-lg-3 col-md-4 label">Nom complet</div>
+                                <div class="col-lg-9 col-md-8">{{account.username}}</div>
+                            </div>
+
+
+                            <div class="row">
+                                <div class="col-lg-3 col-md-4 label">Addresse</div>
+                                <div class="col-lg-9 col-md-8">{{getAdresse(account.adresse)}}</div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-lg-3 col-md-4 label">Phone</div>
+                                <div class="col-lg-9 col-md-8">{{account.number}}</div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-lg-3 col-md-4 label">Email</div>
+                                <div class="col-lg-9 col-md-8">{{account.email}}</div>
+                            </div>
+
+                        </div>
+
+                        <div class="tab-pane fade profile-edit pt-3" id="profile-edit">
+
+                            <!-- Profile Edit Form -->
+                            <form enctype="multipart/form-data">
+                                <div class="row mb-3">
+                                    <label for="profileImage" class="col-md-4 col-lg-3 col-form-label">Photo de profil</label>
+                                    <div class="col-md-8 col-lg-9">
+                                        <img *ngIf="!account.profil.name" src="assets/img/_user.gif" alt="Profile">
+
+                                        <img *ngIf="account.profil.name" src="{{getProfil(account.profil)}}" alt="Profile" height="120" width="120">
+                                        <div class="pt-2">
+                                            <a href="#" class="btn btn-primary btn-sm" title="Televerser une nouvelle image" data-bs-toggle="modal" data-bs-target="#basicModal"><i class="bi bi-upload"></i> </a>
+                                            <a href="#" class="btn btn-danger btn-sm" title="Supprimer cette image"><i class="bi bi-trash"></i></a>
+                                        </div>
+                                        <div class="modal fade" id="basicModal" tabindex="-1">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title">Profil</h5>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <input type="file" name="file" id="profil" accept="image/*" (change)="onChange($event)">
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                                                        <button type="button" class="btn btn-primary" (click)="uploadProfil()" data-bs-dismiss="modal">Enregistrer</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                            <form>
+                                <div class="row mb-3">
+                                    <label for="fullName" class="col-md-4 col-lg-3 col-form-label">Nom d'utulisateur</label>
+                                    <div class="col-md-8 col-lg-9">
+                                        <input name="fullName" type="text" class="form-control" id="fullName" [(ngModel)]="account.username">
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label for="phone" class="col-md-4 col-lg-3 col-form-label">Telephone</label>
+                                    <div class="col-md-8 col-lg-9">
+                                        <input name="phone" type="tel" class="form-control" id="phone" [(ngModel)]="account.number">
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label for="email" class="col-md-4 col-lg-3 col-form-label">Adresse mail</label>
+                                    <div class="col-md-8 col-lg-9">
+                                        <input name="email" type="text" class="form-control" id="email" [(ngModel)]="account.email">
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label for="about" class="col-md-4 col-lg-3 col-form-label">Infos</label>
+                                    <div class="col-md-8 col-lg-9">
+                                        <textarea name="about" class="form-control" id="about" style="height: 100px" [(ngModel)]="account.infos"></textarea>
+                                    </div>
+                                </div>
+                                <div class="text-center">
+                                    <button type="submit" class="btn btn-primary" (click)="updateInfo()">Enregistrer</button>
+                                </div>
+                            </form>
+                            <hr>
+                            <!-- End Profile Edit Form -->
+                            <fieldset *ngIf="typeAccount==='user'">
+                                <legend> Informations personnelles</legend>
+                                <form>
+                                    <div class="row mb-3">
+                                        <label for="postnom" class="col-md-4 col-lg-3 col-form-label">PostNom</label>
+                                        <div class="col-md-8 col-lg-9">
+                                            <input name="postnom" type="text" class="form-control" id="fullName" [(ngModel)]="user.postnom">
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <label for="gs" class="col-md-4 col-lg-3 col-form-label">Groupe sanguin</label>
+                                        <div class="col-md-8 col-lg-9">
+                                            <select name="gs" type="text" class="form-control" id="gs" [(ngModel)]="user.groupeSanguin">
+                                                <option *ngFor="let gs of groupSanguins" value="{{gs}}">{{gs}}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <label for="sexe" class="col-md-4 col-lg-3 col-form-label">Sexe</label>
+                                        <div class="col-md-8 col-lg-9">
+                                            <select name="sexe" [(ngModel)]="user.sexe" class="form-control">
+                                                <option value="M">Masculin</option>
+                                                <option value="F">Feminin</option>
+                                                <option value="-">Non Defini</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <label for="tt" class="col-md-4 col-lg-3 col-form-label">Traitements medicamentaux</label>
+                                        <div class="col-md-8 col-lg-9">
+                                            <input name="tt" type="text" class="form-control" id="tt" [(ngModel)]="user.traitement">
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <label for="al" class="col-md-4 col-lg-3 col-form-label">Alergies</label>
+                                        <div class="col-md-8 col-lg-9">
+                                            <input name="al" type="text" class="form-control" id="al" [(ngModel)]="user.alergies">
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <label for="dn" class="col-md-4 col-lg-3 col-form-label">Donneur d'organes</label>
+                                        <div class="col-md-8 col-lg-9">
+                                            <select name="dn" [(ngModel)]="user.donneurOrgane" class="form-control">
+                                                <option value="Oui">Oui</option>
+                                                <option value="Non">Non</option>
+                                                <option value="-">Non Defini</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="text-center">
+                                        <button type="submit" class="btn btn-primary" (click)="updateUser()">Enregistrer</button>
+                                    </div>
+                                </form>
+                                <hr>
+                            </fieldset>
+                            <fieldset *ngIf="typeAccount==='hopital'">
+                                <form>
+
+                                    <div class="form-group">
+                                        <label for="address">
+                                                <strong>Heure d'ouverture</strong>
+                                            </label>
+                                        <input [(ngModel)]="hopital.heureOuverture" class="form-control" type="time" placeholder="{{hopital.heureOuverture}}" name="heureOuverture">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="address">
+                                                <strong>Heure fermeture</strong>
+                                            </label>
+                                        <input [(ngModel)]="hopital.heureFermeture" class="form-control" type="time" placeholder="{{hopital.heureFermeture}}" name="heureFermeture">
+                                    </div>
+                                    <div (click)="updateHopitalInfo()" class="form-group text-center"><button class="btn btn-primary btn-sm" type="submit">Enregistrer</button></div>
+                                </form>
+                            </fieldset>
+                            <fieldset>
+                                <legend>Mon Adresse</legend>
+                                <form>
+                                    <div class="row mb-3">
+                                        <label for="numero" class="col-md-4 col-lg-3 col-form-label">Numero</label>
+                                        <div class="col-md-8 col-lg-9">
+                                            <input name="numero" type="number" class="form-control" id="numero" [(ngModel)]="account.adresse.numero">
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <label for="rue" class="col-md-4 col-lg-3 col-form-label">Rue/Avenue</label>
+                                        <div class="col-md-8 col-lg-9">
+                                            <input name="rue" type="text" class="form-control" id="rue" [(ngModel)]="account.adresse.avenue">
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <label for="quart" class="col-md-4 col-lg-3 col-form-label">Quartier/Cité</label>
+                                        <div class="col-md-8 col-lg-9">
+                                            <input name="quart" type="text" class="form-control" id="quart" [(ngModel)]="account.adresse.quartier">
+                                        </div>
+
+                                    </div>
+                                    <div class="row mb-3">
+                                        <label for="comm" class="col-md-4 col-lg-3 col-form-label">Commune/District</label>
+                                        <div class="col-md-8 col-lg-9">
+                                            <input name="comm" type="tel" class="form-control" id="comm" [(ngModel)]="account.adresse.commune">
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <label for="ville" class="col-md-4 col-lg-3 col-form-label">Ville</label>
+                                        <div class="col-md-8 col-lg-9">
+                                            <input name="ville" type="text" class="form-control" id="ville" [(ngModel)]="account.adresse.ville">
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <label for="province" class="col-md-4 col-lg-3 col-form-label">Province</label>
+                                        <div class="col-md-8 col-lg-9">
+                                            <input name="province" type="text" class="form-control" id="province" [(ngModel)]="account.adresse.province">
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <label for="pays" class="col-md-4 col-lg-3 col-form-label">Pays</label>
+                                        <div class="col-md-8 col-lg-9">
+                                            <input name="pays" type="text" class="form-control" id="pays" [(ngModel)]="account.adresse.pays">
+                                        </div>
+                                    </div>
+                                    <div class="text-center">
+                                        <button type="submit" class="btn btn-primary" (click)="updateAdresse()">Enregistrer</button>
+                                    </div>
+                                </form>
+                            </fieldset>
+                        </div>
+
+                        <div class="tab-pane fade pt-3" id="profile-settings">
+
+                            <!-- Settings Form -->
+                            <form>
+
+                                <div class="row mb-3">
+                                    <label for="fullName" class="col-md-4 col-lg-3 col-form-label">Email Notifications</label>
+                                    <div class="col-md-8 col-lg-9">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="changesMade" checked>
+                                            <label class="form-check-label" for="changesMade">
+                            Changes made to your account
+                          </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="newProducts" checked>
+                                            <label class="form-check-label" for="newProducts">
+                            Information on new products and services
+                          </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="proOffers">
+                                            <label class="form-check-label" for="proOffers">
+                            Marketing and promo offers
+                          </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="securityNotify" checked disabled>
+                                            <label class="form-check-label" for="securityNotify">
+                            Security alerts
+                          </label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="text-center">
+                                    <button type="submit" class="btn btn-primary">Save Changes</button>
+                                </div>
+                            </form>
+                            <!-- End settings Form -->
+
+                        </div>
+
+                        <div class="tab-pane fade pt-3" id="profile-change-password">
+                            <!-- Change Password Form -->
+                            <form>
+
+                                <div class="row mb-3">
+                                    <label for="currentPassword" class="col-md-4 col-lg-3 col-form-label">Current Password</label>
+                                    <div class="col-md-8 col-lg-9">
+                                        <input name="password" type="password" class="form-control" id="currentPassword">
+                                    </div>
+                                </div>
+
+                                <div class="row mb-3">
+                                    <label for="newPassword" class="col-md-4 col-lg-3 col-form-label">New Password</label>
+                                    <div class="col-md-8 col-lg-9">
+                                        <input name="newpassword" type="password" class="form-control" id="newPassword">
+                                    </div>
+                                </div>
+
+                                <div class="row mb-3">
+                                    <label for="renewPassword" class="col-md-4 col-lg-3 col-form-label">Re-enter New Password</label>
+                                    <div class="col-md-8 col-lg-9">
+                                        <input name="renewpassword" type="password" class="form-control" id="renewPassword">
+                                    </div>
+                                </div>
+
+                                <div class="text-center">
+                                    <button type="submit" class="btn btn-primary">Change Password</button>
+                                </div>
+                            </form>
+                            <!-- End Change Password Form -->
+
+                        </div>
+
+                    </div>
+                    <!-- End Bordered Tabs -->
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>

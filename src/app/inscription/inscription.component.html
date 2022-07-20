@@ -1,0 +1,107 @@
+<div class="container" *ngIf="!typeAccount">
+    <div class="pagetitle">
+        <h1>Continuer en tant que</h1>
+    </div>
+    <div class="iconslist row  row-cols-">
+        <div class="icon col" (click)="setTypeAccount('user')">
+            <i class="bi bi-person-fill"></i>
+            <div class="label">Utilisateur</div>
+        </div>
+        <div class="icon col" (click)="setTypeAccount('driver')">
+            <i class="bx bxs-taxi"></i>
+            <div class="label">Chauffeur</div>
+        </div>
+        <div class="icon col" (click)="setTypeAccount('hopital')">
+            <i class="bx bxs-business"></i>
+            <div class="label">Hopital</div>
+        </div>
+    </div>
+</div>
+<div class="container" *ngIf="typeAccount">
+    <section class="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-4 col-md-6 d-flex flex-column align-items-center justify-content-center">
+
+                    <div class="d-flex justify-content-center py-4">
+                        <a routerLink="/" class="logo d-flex align-items-center w-auto">
+                            <img src="favicon.png" alt="">
+                        </a>
+                    </div>
+                    <!-- End Logo -->
+
+                    <div class="card mb-3">
+
+                        <div class="card-body">
+
+                            <div class="pt-4 pb-2">
+                                <h5 class="card-title text-center pb-0 fs-4">Créer votre compte</h5>
+                                <p class="text-center small">Entrez vos details pour créer votre compte</p>
+                            </div>
+
+                            <form class="row g-3 needs-validation" novalidate #accountForm="ngForm" (ngSubmit)="add(accountForm)">
+                                <div class="col-12">
+                                    <label for="yourName" class="form-label">Votre nom</label>
+                                    <input type="text" #nam="ngModel" name="name" class="form-control" minlength="3" id="yourName" [(ngModel)]="account.username" required>
+                                    <div class="text-danger" *ngIf="nam.dirty && nam.invalid">Veuillez entrer votre nom svp!!!<br>3 caracteres minimum</div>
+                                </div>
+
+                                <div class="col-12">
+                                    <label for="yourEmail" class="form-label">Votre numero telephone</label>
+                                    <input type="tel" #num="ngModel" name="number" class="form-control" id="yourNumber" [(ngModel)]="account.number" required maxlength="10" pattern="\(?\d+\)?[-.\s]?\d+[-.\s]?\d+">
+                                    <div class="text-danger" *ngIf="num.dirty && num.invalid">Entrer un numero valide à 10 chiffres!</div>
+                                </div>
+
+                                <div class="col-12">
+                                    <label for="yourUsername" class="form-label">E-mail</label>
+                                    <div class="input-group has-validation">
+                                        <span class="input-group-text" id="inputGroupPrepend">@</span>
+                                        <input type="email" #emai="ngModel" name="username" class="form-control" id="yourUsername" [(ngModel)]="account.email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$">
+                                    </div>
+                                    <div class="text-danger" *ngIf="emai.dirty && emai.invalid">Veuillez entrer une adresse email valide.</div>
+                                </div>
+
+                                <div class="col-12">
+                                    <label for="yourPassword" class="form-label">Mot de passe</label>
+                                    <input type="password" #pass="ngModel" name="password" class="form-control" id="yourPassword" [(ngModel)]="account.password" required [minlength]="4">
+                                    <div class="text-danger" *ngIf="pass.dirty && pass.invalid">Le mot de passe doit contenir au moins 4 caracteres</div>
+                                </div>
+                                <div class="col-12">
+                                    <label for="yourPassword" class="form-label">Confirmer mot de passe</label>
+                                    <input type="password" #conf="ngModel" name="confirm" class="form-control" id="confirm" [(ngModel)]="confirm" required>
+                                    <div class="text-danger" *ngIf="conf.dirty && confirm != account.password">Vos mots de passe doivent être identiques</div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-check">
+                                        <input class="form-check-input" #ter="ngModel" name="terms" type="checkbox" value="" id="acceptTerms" [(ngModel)]="term" required>
+                                        <label class="form-check-label" for="acceptTerms">J'accepte les <a href="#">termes et conditions</a></label>
+                                    </div>
+                                    <div class="text-danger" *ngIf="ter.dirty && ter.invalid">Vous devez accepter les termes & conditons pour continuer.</div>
+
+                                </div>
+                                <div class="col-12">
+                                    <button class="btn btn-primary w-100" type="submit" [disabled]="!accountForm.form.valid">Créer compte</button>
+                                </div>
+                                <div class="col-12 text-center">
+                                    <p class="small mb-0">Vous avez deja un compte? <a routerLink="/signin">Connectez vous </a></p>
+                                </div>
+                                <div class="col-12 text-center" (click)="changeType()">
+                                    <a href="#" class="small mb-0">Changer de type de compte</a>
+                                </div>
+                            </form>
+
+                        </div>
+                    </div>
+
+                    <div class="credits">
+
+                        Designed by <a href="https://github.com/AndyMar1204">Andy Josué</a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+</div>

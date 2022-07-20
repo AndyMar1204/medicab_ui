@@ -1,0 +1,190 @@
+<div *ngIf="!user.doctor">
+    <div class="alert alert-info text-center">
+
+
+        Vous n'avez pas encore de docteur <br> Voulez vous ?
+
+        <div class="d-sm-flex align-items-center justify-content-between mb-1">
+            <button class="btn btn-primary btn-sm shadow-sm d-sm-inline-block" data-bs-toggle="modal" data-bs-target="#addDoctor">
+            <i class="fas fa-plus fa-sm text-white-50"></i>
+            Ajouter docteur</button>
+
+            <button class="btn btn-primary btn-sm shadow-sm d-sm-inline-block" data-bs-toggle="modal" data-bs-target="#listDoctor">Choisir un docteur</button>
+        </div>
+    </div>
+</div>
+<div *ngIf="!user.doctor" class="modal fade shadow" id="addDoctor" tabindex="-1" role="dialog" aria-labelledby="myModalDoctor" aria-hidden="true">
+
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h6 class="m-0 font-weight-bold text-primary">Nouveau Docteur</h6>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
+            </div>
+            <div class="card-body">
+                <form class="form-horizontal" role="form" #docForm="ngForm" (ngSubmit)="addOrUpdateDocteur(docForm)">
+                    <div class="form-group">
+
+                        <label for="nom" class="col-sm-3 control-label">Nom<span class="text-danger">*</span></label>
+
+                        <div class="col">
+                            <input type="text" class="form-control" id="nom" name="nom" [(ngModel)]="docteur.nom" placeholder="Nom" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+
+                        <label for="firstname" class="col-sm-3 control-label">Post nom</label>
+
+                        <div class="col">
+                            <input type="text" class="form-control" id="first" placeholder="Post nom" [(ngModel)]="docteur.postnom" name="postnom">
+                        </div>
+                    </div>
+                    <div class="form-group">
+
+                        <label for="firstname" class="col-sm-3 control-label">Telephone<span class="text-danger">*</span></label>
+
+                        <div class="col">
+                            <input type="tel" class="form-control" id="telephone" placeholder="Numero telephone" [(ngModel)]="docteur.telephone" name="telephone" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+
+                        <label for="firstname" class="col-sm-3 control-label">Email<span class="text-danger">*</span></label>
+
+                        <div class="col">
+                            <input type="email" class="form-control" name="email" placeholder="Adresse mail" [(ngModel)]="docteur.email" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+
+                        <label for="firstname" class="col-sm-3 control-label">Fonction<span class="text-danger">*</span></label>
+
+                        <div class="col">
+                            <input type="text" class="form-control" name="fonction" placeholder="Fonction" [(ngModel)]="docteur.fonction" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+
+                        <label for="firstname" class="col-sm-3 control-label">Hopital<span class="text-danger">*</span></label>
+
+                        <div class="col">
+                            <input type="text" class="form-control" name="hopital" placeholder="Hopital" [(ngModel)]="docteur.hopital" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+
+                        <label for="firstname" class="col-sm-3 control-label">Adresse<span class="text-danger">*</span></label>
+
+                        <div class="col">
+                            <input type="text" class="form-control" name="adresse" placeholder="Adresse" [(ngModel)]="docteur.adresse" required>
+                        </div>
+                    </div>
+                    <button type="button" class="center-block btn btn-primary btn-sm justify" type="submit">Enregistrer</button>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <span class="text-danger">*</span> Champs obligatoires
+                <button type="button" class="btn btn-primary" id="annuler" data-bs-dismiss="modal">Annuler
+                </button>
+            </div>
+        </div>
+    </div>
+
+</div>
+<div class="row" *ngIf="user.doctor">
+    <!-- row -->
+
+    <div class="container-fluid section profile">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card shadow">
+                    <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
+                        <img class="mr-3" src="assets/img/_user.gif" width="100" height="100" alt="Profile" class="rounded-circle">
+                        <h2>Dr {{docteur.nom}}</h2>
+                        <h3>{{docteur.fonction}}</h3>
+                        <div class="social-links mt-2">
+                            <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
+                            <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
+                            <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
+                            <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-body profile-card pt-4 d-flex flex-column profile-overview">
+                        <h2 class="text-center">Dr {{docteur.nom}}</h2>
+                        <h3 class="text-center">{{docteur.fonction}}</h3>
+
+                        <div class="row row-cols-2">
+                            <div class="col-lg-3 col-md-4 labelcol-xs-4 label">Hopital</div>
+                            <div class="col-lg-9 col-md-8 text-strong">{{docteur.hopital}}</div>
+                        </div>
+                        <div class="row row-cols-2">
+                            <div class="col-lg-3 col-md-4 label">Adresse</div>
+                            <div class="col-lg-9 col-md-8">{{docteur.adresse}}</div>
+                        </div>
+                        <div class="row row-cols-2">
+                            <div class="col-lg-3 col-md-4 label">Email</div>
+                            <div class="col-lg-9 col-md-8">
+                                <a href="mailto:{{docteur.email}}">
+                                    <span>{{docteur.email}}</span></a>
+                            </div>
+                        </div>
+                        <div class="row row-cols-2">
+                            <div class="col-lg-3 col-md-4 label">Phone</div>
+                            <div class="col-lg-9 col-md-8">
+                                <a href="tel:{{docteur.telephone}}">
+                                    <span>{{docteur.telephone}}</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-body profile-card pt-4 d-flex flex-column">
+                        <h2 class="text-center">Biography</h2>
+                        <p>
+                            {{docteur.biography}}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12">
+            <iframe class="d-flex" allowfullscreen="" frameborder="0" src="https://www.google.com/maps/embed/v1/place?key=AIzaSyCQ9_nzfMlRjohAaWOYz19nY1Ux40wdzcE&amp;q=-2.506752%2C28.8718848&amp;zoom=15" width="100%" height="400"></iframe>
+        </div>
+    </div>
+</div>
+<!-- #/ container -->
+
+<div class="modal fade" id="listDoctor" *ngIf="!user.doctor">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h6 class="m-0 font-weight-bold text-primary">Nouveau Docteur</h6>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
+            </div>
+            <div class="modal-body">
+                <form role="form" #docForm="ngForm" (ngSubmit)="addOrUpdateDocteur(docForm)">
+                    <div class="form-froup">
+                        <label for="doc">Choisir un docteur</label>
+                        <select class="form-control" name="doc" [(ngModel)]="docteur.id">
+                            <option *ngFor="let doc of doctors" value="{{doc.id}}">Nom : {{doc.nom}} - {{doc.postnom}} <br>Hopital : {{doc.hopital}}</option>      
+                        </select>
+                    </div>
+                    <button type="submit">Choisir comme docteur</button>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="annuler" data-bs-dismiss="modal">Annuler
+
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

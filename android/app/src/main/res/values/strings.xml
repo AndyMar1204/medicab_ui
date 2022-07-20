@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Medicab</string>
+    <string name="title_activity_main">Medicab</string>
+    <string name="package_name">com.andy.medicab</string>
+    <string name="custom_url_scheme">com.andy.medicab</string>
+</resources>

@@ -1,0 +1,26 @@
+<div class="container-fluid" *ngIf="allTypesUrgence">
+    <div class="mb-4"></div>
+    <div class="text-center justify-content-center">
+        <img src="assets/img/sos.png" class="img-fluid rounded-circle img-thumbnail" alt="">
+
+        <h4 class="col text-primary">Cliquer pour lancer une Urgence <br> & <br>informer les chauffeurs proches de vous</h4>
+    </div>
+
+    <div class="row row-cols">
+
+        <div class="col mb-4" *ngFor="let urg of allTypesUrgence">
+            <div class="card shadow border-left-primary py-2">
+                <div class="card-body">
+                    <div class="row align-items-center no-gutters">
+                        <div class="col text-center">
+                            <div class="text-uppercase text-primary font-weight-bold text-xs mb-1"><span> {{stringUp(urg)}}</span></div>
+                            <img src="assets/img/accid.png" class="img-fluid rounded-circle img-thumbnail" height="80" alt="" *ngIf="urg==='Accident'">
+                            <img src="assets/img/enceint.png" class="img-fluid rounded-circle img-thumbnail" alt="" *ngIf="urg==='Grossesse'">
+                            <img src="assets/img/evanuis.png" class="img-fluid rounded-circle img-thumbnail" height="80" alt="" *ngIf="urg==='Evanouissement'">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
