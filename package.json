@@ -1,6 +1,9 @@
 {
     "name": "medicab",
-    "version": "0.0.0",
+    "version": "0.0.1",
+    "engines": {
+        "node": "8.11.0"
+    },
     "scripts": {
         "ng": "ng",
         "start": "node server.js",
