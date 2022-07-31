@@ -1,21 +1,26 @@
-<div class="container" *ngIf="!typeAccount">
-    <div class="pagetitle">
+<div class="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4" *ngIf="!typeAccount">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="pagetitle text-center">
         <h1>Continuer en tant que</h1>
-    </div>
-    <div class="iconslist row  row-cols-">
+      </div>
+      <div class="iconslist">
         <div class="icon col" (click)="setTypeAccount('user')">
-            <i class="bi bi-person-fill"></i>
-            <div class="label">Utilisateur</div>
+          <i class="bi bi-person-fill"></i>
+          <div class="label">Utilisateure</div>
         </div>
         <div class="icon col" (click)="setTypeAccount('driver')">
-            <i class="bx bxs-taxi"></i>
-            <div class="label">Chauffeur</div>
+          <i class="bx bxs-taxi"></i>
+          <div class="label">Chauffeur</div>
         </div>
         <div class="icon col" (click)="setTypeAccount('hopital')">
-            <i class="bx bxs-business"></i>
-            <div class="label">Hopital</div>
+          <i class="bx bxs-business"></i>
+          <div class="label">Hopital</div>
         </div>
+      </div>
     </div>
+  </div>
+
 </div>
 <div class="container" *ngIf="typeAccount">
 
