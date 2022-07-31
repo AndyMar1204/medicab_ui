@@ -7,7 +7,7 @@
       <div class="iconslist">
         <div class="icon col" (click)="setTypeAccount('user')">
           <i class="bi bi-person-fill"></i>
-          <div class="label">Utilisateure</div>
+          <div class="label">Utilisateur</div>
         </div>
         <div class="icon col" (click)="setTypeAccount('driver')">
           <i class="bx bxs-taxi"></i>
@@ -49,7 +49,7 @@
 
 
                                 <div class="col-12">
-                                    <label for="yourEmail" class="form-label">Votre numero telephone</label>
+                                    <label for="number" class="form-label">Votre numero telephone</label>
                                     <input type="tel" name="number" class="form-control" id="yourNumber" #num="ngModel" [(ngModel)]="number" required [minlength]="10" pattern="\(?\d+\)?[-.\s]?\d+[-.\s]?\d+">
                                     <div class="text-danger valide" *ngIf="num.dirty && num.invalid">Entrer un numero valide à 10 chiffres!</div>
                                 </div>
