@@ -1,11 +1,12 @@
 <app-menus *ngIf="isLogin"></app-menus>
 <ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="large" color="#fff" type="ball-spin-fade-rotating" [fullScreen]="true">
     <div class="spinner-border text-light" style="width: 50px; height: 50px;" role="status">
-        <span class="visually-hidden">Loading...</span>
+        <span class="visually-hidden">Chargement...</span>
     </div>
 
 </ngx-spinner>
 <main id="main" class="main">
+  <app-message-error *ngIf="displayMessageModal" [messageModal]="messageModal" [type]="type"></app-message-error>
     <router-outlet></router-outlet>
 </main>
 <!-- ======= Footer ======= -->

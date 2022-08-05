@@ -1,5 +1,11 @@
-<div class="div-message-modal">
-  <p>
-    {{messageModal}}
-  </p>
-</div>
+<section class="section mt-3">
+  <div class="row">
+    <div class="col-lg-8 offset-lg-2 text-center">
+      <div class="alert {{type}} alert-dismissible fade show" role="alert">
+        <i class="bi bi-exclamation-octagon me-1"></i>
+        {{messageModal}}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+    </div>
+  </div>
+</section>

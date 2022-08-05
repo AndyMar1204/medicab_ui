@@ -23,7 +23,7 @@
 
 </div>
 <div class="container" *ngIf="typeAccount">
-
+  <app-message-error *ngIf="displayMessageModal" [messageModal]="messageModal" [type]="type"></app-message-error>
     <section class="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4">
         <div class="container">
             <div class="row justify-content-center">
@@ -50,7 +50,7 @@
 
                                 <div class="col-12">
                                     <label for="number" class="form-label">Votre numero telephone</label>
-                                    <input type="tel" name="number" class="form-control" id="yourNumber" #num="ngModel" [(ngModel)]="number" required [minlength]="10" pattern="\(?\d+\)?[-.\s]?\d+[-.\s]?\d+">
+                                    <input type="tel" name="number"  class="form-control" id="number" #num="ngModel" [(ngModel)]="number" required [minlength]="10" pattern="\(?\d+\)?[-.\s]?\d+[-.\s]?\d+" maxlength="10">
                                     <div class="text-danger valide" *ngIf="num.dirty && num.invalid">Entrer un numero valide à 10 chiffres!</div>
                                 </div>
 

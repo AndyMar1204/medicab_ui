@@ -9,7 +9,7 @@ export class MessageErrorComponent implements OnInit {
 
 
   @Input('messageModal') messageModal !: string;
-
+  @Input('type') type !:string;
   constructor() { }
 
   ngOnInit() {

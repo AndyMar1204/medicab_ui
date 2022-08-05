@@ -20,6 +20,7 @@ import { VHopitalComponent } from './v-hopital/v-hopital.component';
 import { MyUrgenceComponent } from './my-urgence/my-urgence.component';
 import { ResetComponent } from './reset/reset.component';
 import { DoctorComponent } from './doctor/doctor.component';
+import { MessageErrorComponent } from './message-error/message-error.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { DoctorComponent } from './doctor/doctor.component';
     VHopitalComponent,
     MyUrgenceComponent,
     ResetComponent,
-    DoctorComponent
+    DoctorComponent,
+    MessageErrorComponent
   ],
   imports: [
     BrowserModule,

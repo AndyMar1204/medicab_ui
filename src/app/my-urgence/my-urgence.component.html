@@ -1,3 +1,1 @@
-<h3>urgence est
-    <h2>{{urgence.etat}}</h2>
-</h3>
+<app-message-error *ngIf="displayMessageModal" [messageModal]="messageModal" [type]="type"></app-message-error>
