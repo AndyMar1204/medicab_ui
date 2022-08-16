@@ -1,28 +1,57 @@
 <div class="container-fluid" *ngIf="allTypesUrgence">
-    <div class="mb-4"></div>
-    <div class="text-center justify-content-center">
-        <img src="assets/img/sos.png" class="img-fluid rounded-circle img-thumbnail" alt="">
+  <div>
+    <button type="button" id="btn_urg" class="btn btn-primary visually-hidden" data-bs-toggle="modal" data-bs-target="#basicModal">
+      Appel Urgence
+    </button>
+    <div class="modal fade" id="basicModal" tabindex="-1">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Urgence...</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div class="text-center justify-content-center">
+              <a type="button" class="btn btn-primary p-2" href="tel:+243970634739" (click)="closeModal()"><i class="bi bi-telephone-forward"></i>Appeler un taxi</a>
+              <button (click)="onlineEmergency()" type="button" class="btn btn-primary"><i class="bi bi-globe"></i>Urgence en ligne</button>
+            </div>
+
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" id="btn-close" data-bs-dismiss="modal">Annuler</button>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <app-message-error *ngIf="displayMessageModal" [messageModal]="messageModal" [type]="type"></app-message-error>
+    <div class="mb-auto"></div>
+    <div class="text-center justify-content-center" (click)="initUrgence()">
+        <img src="assets/img/sos.png" class="btn-primary img-fluid rounded-circle img-thumbnail" alt="">
 
         <h4 class="col text-primary">Cliquer pour lancer une Urgence <br> & <br>informer les chauffeurs proches de vous</h4>
     </div>
 
-    <div class="row row-cols-3">
+    <div class="row row-cols-2 row-cols-sm-auto">
 
-        <div class="col" *ngFor="let urg of allTypesUrgence">
-            <div class="card shadow-lg ratio-1x1 mb-2">
+        <div class="col" *ngFor="let urg of allTypesUrgence" >
+            <div class="card shadow-lg" id="{{urg}}" (click)="selectUrg(urg)">
                 <div class="card-body">
                     <div class="row align-items-center no-gutters">
                         <div class="col text-center">
                             <div class="text-uppercase text-primary font-weight-bold text-xs mb-1 ratio-1x1">
                               <span> {{stringUp(urg)}}</span>
                             </div>
-                            <img src="assets/img/accid.png" class="img" alt="" *ngIf="urg==='Accident'">
-                            <img src="assets/img/enceint.png" class="img" alt="" *ngIf="urg==='Grossesse'">
-                            <img src="assets/img/evanuis.png" class="img" alt="" *ngIf="urg==='Evanouissement'">
+                            <img src="assets/img/accid.png" class="img-thumbnail" style="height: 52px"  alt="" *ngIf="urg==='Accident'">
+                            <img src="assets/img/enceint.png" class="img img-thumbnail" style="height: 52px" alt="" *ngIf="urg==='Grossesse'">
+                            <img src="assets/img/evanuis.png" class="img img-thumbnail" style="height: 52px" alt="" *ngIf="urg==='Evanouissement'">
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
+
 </div>

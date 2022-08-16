@@ -155,6 +155,7 @@ export class MapsComponent extends BuildMessage implements OnInit {
       //infoWindow.setContent(hopital.heureFermeture.toUTCString())
       infoWindow.open(marker.getMap()!, marker)
     })
+
     marker.setIcon('assets/icons/car.png')
     marker.setMap(map)
   }

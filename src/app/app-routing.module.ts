@@ -19,14 +19,14 @@ const routes: Routes = [
   {path:'new', component:InscriptionComponent},
   {path:'profil', component:ProfilComponent, canActivate:[RouteGuardService]},
   {path:'emergency', component:UrgencesComponent, canActivate:[RouteGuardService]},
-  {path:'hospitals', component:HopitalsComponent},
+  {path:'hospitals', component:HopitalsComponent, canActivate:[RouteGuardService]},
   {path:'viewHopital/:id',component:VHopitalComponent},
-  {path:'myUrgence/:id',component:MyUrgenceComponent},
+  {path:'myUrgence/:id',component:MyUrgenceComponent, canActivate:[RouteGuardService]},
   {path:'reset', component:ResetComponent},
-  {path:'myDoctor', component:DoctorComponent},
+  {path:'myDoctor', component:DoctorComponent, canActivate:[RouteGuardService]},
 
 
-  
+
   {path:'**', component:ErrComponent}
 ];
 

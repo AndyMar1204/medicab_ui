@@ -4,40 +4,47 @@
 </div>
 
 <div class="row row-cols-3 text-center" style="padding-top: 4px;" *ngIf="user">
-    <div class="icon col" (click)="initEmergency('Grossesse')">
-        <div class="card">
-            <div class="card-body">
-                <img class="img" src="assets/img/enceint.png" alt="" height="50">
-                <div class="label ">Grossesse</div>
-            </div>
-        </div>
+  <div class="icon col" (click)="initEmergency('Grossesse')">
+    <div class="card">
+      <div class="card-body">
+        <img class="img" src="assets/img/enceint.png" alt="" height="50">
+        <div class="label ">Grossesse</div>
+      </div>
     </div>
-    <div class="icon col" (click)="initEmergency('Accident')">
-        <div class="card">
-            <div class="card-body">
-                <br>
-                <img class="img" src="assets/img/accid.png" alt="" height="30">
-                <div class="label">Accident</div>
-            </div>
-        </div>
+  </div>
+  <div class="icon col" (click)="initEmergency('Accident')">
+    <div class="card">
+      <div class="card-body">
+        <br>
+        <img class="img" src="assets/img/accid.png" alt="" height="30">
+        <div class="label">Accident</div>
+      </div>
     </div>
-    <div class="icon col" (click)="initEmergency('Evanouissement')">
-        <div class="card">
-            <div class="body">
-                <br>
-                <img class="img" src="assets/img/evanuis.png" alt="" height="50px">
-                <div class="label">Evanouissement</div>
-            </div>
-        </div>
+  </div>
+  <div class="icon col" (click)="initEmergency('Evanouissement')">
+    <div class="card">
+      <div class="body">
+        <br>
+        <img class="img" src="assets/img/evanuis.png" alt="" height="50px">
+        <div class="label">Evanouissement</div>
+      </div>
     </div>
+  </div>
 </div>
 <div class="col-12">
-    <form action="">
-        <div class="form-floating">
-            <select name="trans" id="trans" [(ngModel)]="typeTrans" class="form-select" id="floatingSelect" aria-label="Transport">
-             <option *ngFor="let trans of allTrans" value="{{trans}}">{{trans}}</option>
-        </select>
-            <label for="floatingSelect">Transport</label>
-        </div>
-    </form>
+  <form action="">
+    <div class="form-floating">
+      <select name="trans" id="trans" [(ngModel)]="typeTrans" class="form-select" id="floatingSelect"
+              aria-label="Transport">
+        <option *ngFor="let trans of allTrans" value="{{trans}}">{{trans}}</option>
+      </select>
+      <label for="floatingSelect">Transport</label>
+    </div>
+  </form>
+</div>
+<div class="col-12 card shadow-lg mt-2">
+  <div class="card-body text-center align-items-center m-auto">
+    <a routerLink="emergency" class="btn">Voir d'autres urgences</a>
+  </div>
+
 </div>

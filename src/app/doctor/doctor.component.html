@@ -7,7 +7,7 @@
         <div class="d-sm-flex align-items-center justify-content-between mb-1">
             <button class="btn btn-primary btn-sm shadow-sm d-sm-inline-block" data-bs-toggle="modal" data-bs-target="#addDoctor">
             <i class="fas fa-plus fa-sm text-white-50"></i>
-            Ajouter docteur</button>
+            Ajouter mon docteur</button>
 
             <button class="btn btn-primary btn-sm shadow-sm d-sm-inline-block" data-bs-toggle="modal" data-bs-target="#listDoctor">Choisir un docteur</button>
         </div>
@@ -33,7 +33,7 @@
                     </div>
                     <div class="form-group">
 
-                        <label for="firstname" class="col-sm-3 control-label">Post nom</label>
+                        <label for="first" class="col-sm-3 control-label">Post nom</label>
 
                         <div class="col">
                             <input type="text" class="form-control" id="first" placeholder="Post nom" [(ngModel)]="docteur.postnom" name="postnom">
@@ -41,7 +41,7 @@
                     </div>
                     <div class="form-group">
 
-                        <label for="firstname" class="col-sm-3 control-label">Telephone<span class="text-danger">*</span></label>
+                        <label for="telephone" class="col-sm-3 control-label">Telephone<span class="text-danger">*</span></label>
 
                         <div class="col">
                             <input type="tel" class="form-control" id="telephone" placeholder="Numero telephone" [(ngModel)]="docteur.telephone" name="telephone" required>
@@ -49,34 +49,34 @@
                     </div>
                     <div class="form-group">
 
-                        <label for="firstname" class="col-sm-3 control-label">Email<span class="text-danger">*</span></label>
+                        <label for="email" class="col-sm-3 control-label">Email<span class="text-danger">*</span></label>
 
                         <div class="col">
-                            <input type="email" class="form-control" name="email" placeholder="Adresse mail" [(ngModel)]="docteur.email" required>
+                            <input type="email" id="email" class="form-control" name="email" placeholder="Adresse mail" [(ngModel)]="docteur.email" required>
                         </div>
                     </div>
                     <div class="form-group">
 
-                        <label for="firstname" class="col-sm-3 control-label">Fonction<span class="text-danger">*</span></label>
+                        <label for="fonction" class="col-sm-3 control-label">Fonction<span class="text-danger">*</span></label>
 
                         <div class="col">
-                            <input type="text" class="form-control" name="fonction" placeholder="Fonction" [(ngModel)]="docteur.fonction" required>
+                            <input type="text" id="fonction" class="form-control" name="fonction" placeholder="Fonction" [(ngModel)]="docteur.fonction" required>
                         </div>
                     </div>
                     <div class="form-group">
 
-                        <label for="firstname" class="col-sm-3 control-label">Hopital<span class="text-danger">*</span></label>
+                        <label for="Hopital" class="col-sm-3 control-label">Hopital<span class="text-danger">*</span></label>
 
                         <div class="col">
-                            <input type="text" class="form-control" name="hopital" placeholder="Hopital" [(ngModel)]="docteur.hopital" required>
+                            <input type="text" id="hopital" class="form-control" name="hopital" placeholder="Hopital" [(ngModel)]="docteur.hopital" required>
                         </div>
                     </div>
                     <div class="form-group">
 
-                        <label for="firstname" class="col-sm-3 control-label">Adresse<span class="text-danger">*</span></label>
+                        <label for="adresse" class="col-sm-3 control-label">Adresse<span class="text-danger">*</span></label>
 
                         <div class="col">
-                            <input type="text" class="form-control" name="adresse" placeholder="Adresse" [(ngModel)]="docteur.adresse" required>
+                            <input type="text" id="adresse" class="form-control" name="adresse" placeholder="Adresse" [(ngModel)]="docteur.adresse" required>
                         </div>
                     </div>
                     <button type="button" class="center-block btn btn-primary btn-sm justify" type="submit">Enregistrer</button>
@@ -174,7 +174,7 @@
                     <div class="form-froup">
                         <label for="doc">Choisir un docteur</label>
                         <select class="form-control" name="doc" [(ngModel)]="docteur.id">
-                            <option *ngFor="let doc of doctors" value="{{doc.id}}">Nom : {{doc.nom}} - {{doc.postnom}} <br>Hopital : {{doc.hopital}}</option>      
+                            <option *ngFor="let doc of doctors" value="{{doc.id}}">Nom : {{doc.nom}} - {{doc.postnom}} <br>Hopital : {{doc.hopital}}</option>
                         </select>
                     </div>
                     <button type="submit">Choisir comme docteur</button>

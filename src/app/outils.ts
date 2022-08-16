@@ -1,5 +1,6 @@
 import { Injectable } from "@angular/core"
 import { Adresse } from "./model/adresse"
+import {CookieService} from "ngx-cookie";
 
 @Injectable({
     providedIn: 'root'
@@ -14,13 +15,19 @@ export class Outils {
     public static buildAdresse(a:Adresse){
         return `N° : ${a.numero}, ${a.avenue} - ${a.quartier}, ${a.commune} - ${a.ville}, ${a.province}`;
     }
+    public static logout(cookie:CookieService){
+      cookie.removeAll()
+      sessionStorage.clear()
+      location.reload()
+    }
 }
 export const USERNAME = 'username'
 export const EMAIL = 'emeil'
 export const PASSWORD = 'password'
 export const NUMBER = 'number'
 export const URL__ ="http://localhost:5000/"
-export const URL_ ="http://apimedicabv1-env.eba-xjzxxvit.us-east-1.elasticbeanstalk.com/"
+export const URL_ = "https://medicab-back-app.herokuapp.com/"
+export const URL___ ="http://apimedicabv1-env.eba-xjzxxvit.us-east-1.elasticbeanstalk.com/"
 export const SAVE_= "save"
 export const UPDATE_ = "update/"
 export const FIND_BY_ID = "findById/"
@@ -34,3 +41,4 @@ export const HOPITAL = "hopital"
 export const ID_POSITION = "id_position"
 export const ID_ACCOUNT = "id_account"
 export const GROUP_SANGUIN = ["O+","O-","A+","A-","B+","B-","AB+","AB-","Hh","Inconnu"]
+export const ACCOUNT_COOKIES = "account_cookie"

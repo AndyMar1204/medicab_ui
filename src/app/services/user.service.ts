@@ -48,4 +48,7 @@ private API_NAME = "rest/users/";
     signinByNumberAndPassword(number:string,password:string):Observable<Account>{
     return this.http.get<Account>(URL_+"connexion/"+`${number}/`+`${password}`)
   }
+  signinByNumberAndHashedPassword(number:string,passwordHashed:string):Observable<Account>{
+    return this.http.get<User>(URL_+`connexionSecure/${number}/${passwordHashed}`)
+  }
 }

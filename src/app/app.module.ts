@@ -1,5 +1,6 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA  } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { CookieModule } from 'ngx-cookie';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -45,7 +46,8 @@ import { MessageErrorComponent } from './message-error/message-error.component';
     HttpClientModule,
     BrowserAnimationsModule,
     FormsModule,
-     NgxSpinnerModule 
+     NgxSpinnerModule,
+    CookieModule.withOptions(),
   ],
   providers: [],
 

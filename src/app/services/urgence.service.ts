@@ -31,4 +31,10 @@ export class UrgenceService {
   getUrgences(){
     return this.http.get(URL_+"getAllUrgences")
   }
+  saveUser(id_user:number, e: Urgence): Observable<Urgence> {
+    return this.http.post<Urgence>(URL_+this.API_NAME + SAVE_+`/${id_user}`, e)
+  }
+  getAllUserUrgence(id_user:number){
+    return this.http.get(URL_+this.API_NAME+`findAllByUser/${id_user}`);
+  }
 }
