@@ -1,3 +1,4 @@
+<app-message-error *ngIf="displayMessageModal" [messageModal]="messageModal" [type]="type"></app-message-error>
 <div class="row justifiy-content-center" style="font-size: 14px; display: inline;">
     <div class="col-12" *ngFor="let hop of listHopital">
         <div class="card shadow-lg o-hidden border-0 my-5 dropdown">

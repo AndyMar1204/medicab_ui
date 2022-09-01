@@ -1,33 +1,37 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { Adresse } from '../model/adresse';
-import { FileInfo } from '../model/file-info';
-import { Hopital } from '../model/hopital';
-import { Outils, URL_ } from '../outils';
-import { HopitalService } from '../services/hopital.service';
-import { UserService } from '../services/user.service';
+import {Component, OnInit} from '@angular/core';
+import {ActivatedRoute} from '@angular/router';
+import {Adresse} from '../model/adresse';
+import {FileInfo} from '../model/file-info';
+import {Hopital} from '../model/hopital';
+import {Outils, URL_} from '../outils';
+import {HopitalService} from '../services/hopital.service';
+import {UserService} from '../services/user.service';
+import {BuildMessage} from "../build-message";
+import {TypeMessage} from "../type-message";
 
 @Component({
   selector: 'app-v-hopital',
   templateUrl: './v-hopital.component.html',
   styleUrls: ['./v-hopital.component.css']
 })
-export class VHopitalComponent implements OnInit {
+export class VHopitalComponent extends BuildMessage implements OnInit {
 
   constructor(private route: ActivatedRoute,
     private hopServ: HopitalService,
-    private userService:UserService) { }
+    private userService:UserService) {
+    super()
+  }
  id_!: number
   hopital: Hopital = new Hopital()
   ngOnInit(): void {
      let id = this.route.snapshot.params['id']
     this.id_ = parseInt(id)
     if (!this.id_)
-      alert("L'identifiant d'un hopital doit etre un nombre")
+      this.buildMessageModal("L'identifiant d'un hopital doit etre un nombre",TypeMessage.WARNING)
     else {
       this.loadHopital(this.id_)
     }
-    
+
   }
   getAdresse(ad:Adresse){
     return Outils.buildAdresse(ad)
@@ -40,9 +44,9 @@ async loadHopital(id: number) {
       },
       err => {
         if (err.status === 0)
-          alert("Impossible de se connecter au serveur")
+          this.buildMessageModal("Impossible de se connecter au serveur", TypeMessage.WARNING)
         else
-          alert(err.error.erreur)
+          this.buildMessageModal(''+err.error.erreur,TypeMessage.WARNING)
         console.log(err)
       }
     )

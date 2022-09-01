@@ -1,21 +1,25 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { Adresse } from '../model/adresse';
-import { Hopital } from '../model/hopital';
-import { ID_ACCOUNT, Outils, TYPE_ACCOUNT, URL_, USER } from '../outils';
-import { HopitalService } from '../services/hopital.service';
-import { UserService } from '../services/user.service';
+import {Component, OnInit} from '@angular/core';
+import {Router} from '@angular/router';
+import {Adresse} from '../model/adresse';
+import {Hopital} from '../model/hopital';
+import {ID_ACCOUNT, Outils, TYPE_ACCOUNT, URL_, USER} from '../outils';
+import {HopitalService} from '../services/hopital.service';
+import {UserService} from '../services/user.service';
+import {BuildMessage} from "../build-message";
+import {TypeMessage} from "../type-message";
 
 @Component({
   selector: 'app-hopitals',
   templateUrl: './hopitals.component.html',
   styleUrls: ['./hopitals.component.css']
 })
-export class HopitalsComponent implements OnInit {
+export class HopitalsComponent extends BuildMessage implements OnInit {
   listHopital : Hopital[]=[]
   constructor(private hServ:HopitalService,
     private userService:UserService,
-    private router:Router) { }
+    private router:Router) {
+    super()
+  }
 
   ngOnInit(): void {
     this.loadHopital()
@@ -25,10 +29,10 @@ export class HopitalsComponent implements OnInit {
       data=>{
         this.listHopital= data;
         if(this.listHopital.length<1)
-          alert('Aucun hopital disponible pour le moment')
+          this.buildMessageModal('Aucun hopital disponible pour le moment',TypeMessage.INFOS)
       },err=>{
         console.log(err)
-        alert("Impossible d'acceder à la liste des hopitaux")
+        this.buildMessageModal("Impossible d'acceder à la liste des hopitaux", TypeMessage.WARNING)
       }
     )
  }
@@ -55,7 +59,7 @@ setUserHopital(hopital:Hopital){
  }
  getImage(hop:Hopital):any{
     let url = URL_+"rest/files/"+hop.profil.name
-    
+
    return url;
  }
  getAdresse(adresse:Adresse){
