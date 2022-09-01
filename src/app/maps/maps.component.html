@@ -31,7 +31,7 @@
         </div>
     </div>
 </div>
-<div class="col-12">
+<div class="col-12" *ngIf="user">
     <form action="">
         <div class="form-floating">
             <select name="trans" id="trans" [(ngModel)]="typeTrans" class="form-select" id="floatingSelect" aria-label="Transport">
